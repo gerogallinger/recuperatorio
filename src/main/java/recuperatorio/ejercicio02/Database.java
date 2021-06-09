@@ -16,7 +16,7 @@ public class Database {
 		}
 	}
 	
-	public static Producto buscarProducto(Integer id) throws DatabaseException, BusquedaProductoException {
+	public static Producto buscarProducto(Integer id) throws DatabaseException, BusquedaProductoException, StockINsucienteException {
 		for(Producto p : _PRODUCTOS) {
 			if(p.getId().equals(id)) {
 				return p;
@@ -24,8 +24,14 @@ public class Database {
 			else {
 				BusquedaProductoException e = new BusquedaProductoException("Falló la busqueda del producto");
 				throw e;
-
 			}
+			/*
+			if(condicion que el producto no tiene mas stock){
+				StockINsucienteException e1 = new StockINsucienteException("No hay stock");
+				throw e1;
+			}
+
+			*/
 
 
 
