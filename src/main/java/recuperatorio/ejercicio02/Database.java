@@ -1,5 +1,8 @@
 package recuperatorio.ejercicio02;
 
+import recuperatorio.ejercicio02.excepciones.BusquedaProductoException;
+import recuperatorio.ejercicio02.excepciones.StockINsucienteException;
+
 import java.util.List;
 import java.util.Random;
 
@@ -13,9 +16,19 @@ public class Database {
 		}
 	}
 	
-	public static Producto buscarProducto(Integer id) throws DatabaseException{
+	public static Producto buscarProducto(Integer id) throws DatabaseException, BusquedaProductoException {
 		for(Producto p : _PRODUCTOS) {
-			if(p.getId().equals(id)) return p;
+			if(p.getId().equals(id)) {
+				return p;
+			}
+			else {
+				BusquedaProductoException e = new BusquedaProductoException("Falló la busqueda del producto");
+				throw e;
+
+			}
+
+
+
 		}
 		return null;
 	}
